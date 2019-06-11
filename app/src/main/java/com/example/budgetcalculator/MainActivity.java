@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         set.setColor(color);
+        chart.setScaleEnabled(false);
         chart.animateY(2000);
         chart.getDescription().setEnabled(false);
         BarData data = new BarData(set);
