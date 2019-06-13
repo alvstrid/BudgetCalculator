@@ -1,5 +1,6 @@
 package com.example.budgetcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.components.AxisBase;
@@ -7,6 +8,7 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,8 +19,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.Button;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,9 +81,20 @@ public class MainActivity extends AppCompatActivity {
         chart.setFitBars(true); // make the x-axis fit exactly all bars
         chart.invalidate(); // refresh
         //CHART END
+        
+        ArrayList<Integer> categories = new ArrayList<>();
+        categories.addAll(Arrays.asList(R.id.category1, R.id.category2, R.id.category3, R.id.category4,  R.id.category5,  R.id.category6));
+        for(Integer category : categories){
+            MaterialCardView card = findViewById(category);
+            Button btn = (Button) card.findViewById(R.id.add_item);
 
-
-
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, AddItem.class));
+                }
+            });
+        }
 
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
