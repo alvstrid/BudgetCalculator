@@ -1,45 +1,29 @@
 package com.example.budgetcalculator;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 
 public class MainActivity extends AppCompatActivity {
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +65,21 @@ public class MainActivity extends AppCompatActivity {
         chart.setFitBars(true); // make the x-axis fit exactly all bars
         chart.invalidate(); // refresh
         //CHART END
-        
-        ArrayList<Integer> categories = new ArrayList<>();
-        categories.addAll(Arrays.asList(R.id.category1, R.id.category2, R.id.category3, R.id.category4,  R.id.category5,  R.id.category6));
+
+        ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.category1, R.id.category2, R.id.category3, R.id.category4, R.id.category5, R.id.category6));
+        String[] category_names = {"Food", "Electricity", "Gas", "Car", "Clothes", "Drinks"};
+        ArrayList<Integer>card_pictures = new ArrayList<>();
+        card_pictures.add(R.drawable.categ_1);
+        card_pictures.add(R.drawable.categ_2);
+        card_pictures.add(R.drawable.categ_3);
+        card_pictures.add(R.drawable.categ_4);
+        card_pictures.add(R.drawable.categ_5);
+        card_pictures.add(R.drawable.categ_6);
+
+        int i = 0;
         for(Integer category : categories){
             MaterialCardView card = findViewById(category);
-            Button btn = (Button) card.findViewById(R.id.add_item);
+            Button btn = card.findViewById(R.id.add_item);
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,7 +87,21 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, AddItem.class));
                 }
             });
+
+            //Set card title
+
+            TextView card_title = card.findViewById(R.id.card_title);
+            card_title.setText(category_names[i]);
+
+            //Set card image
+
+            ImageView img= card.findViewById(R.id.card_picture);
+            img.setImageResource(card_pictures.get(i));
+
+            i++;
+
         }
+
 
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
