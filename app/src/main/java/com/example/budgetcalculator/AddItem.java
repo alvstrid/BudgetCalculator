@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddItem extends AppCompatActivity {
@@ -44,10 +47,18 @@ public class AddItem extends AppCompatActivity {
 
         final EditText expense_name = findViewById(R.id.expense_name);
         final EditText expense_amount = findViewById(R.id.expense_amount);
-        //final TextView expense_date = findViewById(R.id.expense_date);
+        final TextView expense_date = findViewById(R.id.expense_date);
+        final Spinner expense_category = findViewById(R.id.expense_category);
+
         btnAdd = findViewById(R.id.add_expense);
         btnViewData = findViewById(R.id.view_expenses);
         expensesDatabase = new Database(this);
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat current_date1 = new SimpleDateFormat("dd/MM/yyyy");
+        String current_date = current_date1.format(cal.getTime());
+        expense_date.setText(current_date.toString());
+
 
         mDisplayDate = findViewById(R.id.expense_date);
 
@@ -81,7 +92,6 @@ public class AddItem extends AppCompatActivity {
             }
         };
 
-
         //DATABASE
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +99,17 @@ public class AddItem extends AppCompatActivity {
 
                 String newName = expense_name.getText().toString();
                 String newAmount = expense_amount.getText().toString();
-                if (expense_name.length() != 0) {
-                    AddData(newName,newAmount);
+                String newCategory = expense_category.getSelectedItem().toString();
+                String newDate = expense_date.getText().toString();
+
+                if (expense_name.length() != 0 && expense_amount.length()!= 0) {
+                    AddData(newName,newAmount,newCategory,newDate);
                     expense_name.setText("");
+                    expense_amount.setText("");
                 } else {
-                    toastMessage("You must put something in the text field!");
+                    toastMessage("Complete all fields!");
                 }
+
 
             }
         });
@@ -109,8 +124,8 @@ public class AddItem extends AppCompatActivity {
 
     }
 
-    public void AddData(String expense, String amount) {
-        boolean insertData = expensesDatabase.addData(expense,amount);
+    public void AddData(String expense, String amount, String category,String date) {
+        boolean insertData = expensesDatabase.addData(expense,amount,category,date);
 
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
