@@ -60,6 +60,10 @@ public class AddItem extends AppCompatActivity {
         expense_date.setText(current_date.toString());
 
 
+        String[] categories2 = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
+        for(int i = 0; i < categories2.length; i++)
+            expensesDatabase.addCategory(categories2[i]);
+
         mDisplayDate = findViewById(R.id.expense_date);
 
         //Calendar
@@ -114,6 +118,7 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
+
         btnViewData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +128,7 @@ public class AddItem extends AppCompatActivity {
         });
 
     }
+
 
     public void AddData(String expense, String amount, String category,String date) {
         boolean insertData = expensesDatabase.addData(expense,amount,category,date);
