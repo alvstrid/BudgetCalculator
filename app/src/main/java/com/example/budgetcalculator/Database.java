@@ -28,7 +28,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE TEXT, AMOUNT NUM, DATE DATE, CATEGORY TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE TEXT, AMOUNT NUM, DATE TEXT, CATEGORY TEXT)";
         db.execSQL(createTable);
     }
 
@@ -38,16 +38,13 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String expense,  String amount) {
+    public boolean addData(String expense,  String amount, String category, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, expense);
         contentValues.put(COL3, amount);
-        //contentValues.put(COL4, date);
-        //contentValues.put(COL5, category);
-
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
-        //contentValues.put(COL4, dateFormat.format(new Date()));
+        contentValues.put(COL4, date);
+        contentValues.put(COL5, category);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
