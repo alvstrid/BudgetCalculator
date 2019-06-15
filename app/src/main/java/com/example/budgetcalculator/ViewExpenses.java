@@ -23,12 +23,14 @@ public class ViewExpenses extends AppCompatActivity {
     Database mDatabase;
 
     private ListView mListView;
+    private ListView amountListView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_expenses);
         mListView = findViewById(R.id.listView);
+        amountListView = findViewById(R.id.listView2);
         mDatabase = new Database(this);
         setTitle("Expenses");
 
@@ -40,11 +42,13 @@ public class ViewExpenses extends AppCompatActivity {
 
         //get the data and append to a list
         Cursor data = mDatabase.getData();
+
         ArrayList<String> listData = new ArrayList<>();
+
         while(data.moveToNext()){
             //get the value from the database in column 1
             //then add it to the ArrayList
-            listData.add(data.getString(1));
+            listData.add( (data.getString(1) + " " + data.getString(2).toString()) );
         }
         //create the list adapter and set the adapter
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);

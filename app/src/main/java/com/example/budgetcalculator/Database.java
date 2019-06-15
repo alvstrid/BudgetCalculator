@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Database extends SQLiteOpenHelper {
 
     private static final String TAG = "Database";
@@ -25,7 +28,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EXPENSE TEXT, AMOUNT NUM, DATE DATE, CATEGORY TEXT)";
         db.execSQL(createTable);
     }
 
@@ -35,13 +38,16 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String expense ) {
+    public boolean addData(String expense,  String amount) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, expense);
-        //contentValues.put(COL3, amount);
+        contentValues.put(COL3, amount);
         //contentValues.put(COL4, date);
         //contentValues.put(COL5, category);
+
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
+        //contentValues.put(COL4, dateFormat.format(new Date()));
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
