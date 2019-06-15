@@ -43,7 +43,7 @@ public class AddItem extends AppCompatActivity {
         setTitle("Add item");
 
         final EditText expense_name = findViewById(R.id.expense_name);
-        //final EditText expense_amount = findViewById(R.id.expense_amount);
+        final EditText expense_amount = findViewById(R.id.expense_amount);
         //final TextView expense_date = findViewById(R.id.expense_date);
         btnAdd = findViewById(R.id.add_expense);
         btnViewData = findViewById(R.id.view_expenses);
@@ -88,9 +88,9 @@ public class AddItem extends AppCompatActivity {
             public void onClick(View v) {
 
                 String newName = expense_name.getText().toString();
-
+                String newAmount = expense_amount.getText().toString();
                 if (expense_name.length() != 0) {
-                    AddData(newName);
+                    AddData(newName,newAmount);
                     expense_name.setText("");
                 } else {
                     toastMessage("You must put something in the text field!");
@@ -109,8 +109,8 @@ public class AddItem extends AppCompatActivity {
 
     }
 
-    public void AddData(String expense) {
-        boolean insertData = expensesDatabase.addData(expense);
+    public void AddData(String expense, String amount) {
+        boolean insertData = expensesDatabase.addData(expense,amount);
 
         if (insertData) {
             toastMessage("Data Successfully Inserted!");

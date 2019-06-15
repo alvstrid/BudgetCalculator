@@ -4,4 +4,14 @@
     <string name="hint_text">Income</string>
     <string name="title_activity_add_item">add_item</string>
     <string name="title_activity_view_expenses">ViewExpenses</string>
+
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Transportation</item>
+        <item>Household</item>
+        <item>Health</item>
+        <item>Clothes</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>
