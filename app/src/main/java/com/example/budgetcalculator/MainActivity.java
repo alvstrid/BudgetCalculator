@@ -1,5 +1,6 @@
 package com.example.budgetcalculator;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //CHART END
 
         ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.category1, R.id.category2, R.id.category3, R.id.category4, R.id.category5, R.id.category6));
-        String[] category_names = {"Food", "Electricity", "Gas", "Car", "Clothes", "Drinks"};
+        String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         ArrayList<Integer>card_pictures = new ArrayList<>();
         card_pictures.add(R.drawable.categ_1);
         card_pictures.add(R.drawable.categ_2);
@@ -102,21 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
     }
-
-
-
-
 
 }
 

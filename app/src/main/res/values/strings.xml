@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Budget Calculator</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="hint_text">Monthly Salary</string>
+    <string name="hint_text">Income</string>
     <string name="title_activity_add_item">add_item</string>
 </resources>
