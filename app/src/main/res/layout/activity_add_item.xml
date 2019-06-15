@@ -26,7 +26,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/expense_category"
         android:layout_width="214dp"
         android:layout_height="32dp"
         android:layout_marginEnd="28dp"
@@ -44,14 +44,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="52dp"
-        android:labelFor="@id/payment_item"
+        android:labelFor="@id/expense_name"
         android:text="Date"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_category" />
 
 
     <TextView
@@ -75,13 +75,13 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:labelFor="@id/payment_item"
+        android:labelFor="@id/expense_name"
         android:text="Expense name"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_date" />
 
     <TextView
         android:id="@+id/textView5"
@@ -92,13 +92,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:labelFor="@id/payment_item"
+        android:labelFor="@id/expense_name"
         android:text="Amount"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/expense_amount"
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payment_item" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_name" />
 
     <TextView
         android:id="@+id/textView6"
@@ -109,16 +109,16 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:labelFor="@id/payment_item"
+        android:labelFor="@id/expense_name"
         android:text="Category"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintEnd_toStartOf="@+id/expense_category"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_amount" />
 
     <EditText
-        android:id="@+id/payment_item"
+        android:id="@+id/expense_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/expense_amount"
         android:layout_width="227dp"
         android:layout_height="45dp"
         android:layout_marginEnd="16dp"
@@ -148,7 +148,7 @@
 
 
     <TextView
-        android:id="@+id/tvDate"
+        android:id="@+id/expense_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -164,6 +164,21 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/view_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="View All"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_expense" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

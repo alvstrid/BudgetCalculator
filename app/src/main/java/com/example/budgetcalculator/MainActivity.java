@@ -24,7 +24,9 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
-
+/**
+ * Created by Roman Teodora
+ */
 
 public class MainActivity extends AppCompatActivity {
 

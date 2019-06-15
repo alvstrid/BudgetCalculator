@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ViewExpenses"
+            android:label="@string/title_activity_view_expenses"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AddItem"
             android:label="@string/title_activity_add_item"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="Budget Calculator"
