@@ -185,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final SharedPreferences.Editor editor = pref.edit();
         double d = Double.valueOf(pref.getString(income_text,"")) - Double.valueOf(mDatabase.getSum2());
-        balance.setText(String.valueOf(d));
+        String formattedValue = String.format("%.2f", d);
+        balance.setText(formattedValue);
     }
 
 
