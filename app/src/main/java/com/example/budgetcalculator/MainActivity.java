@@ -15,7 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -176,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
             data2.moveToNext();
         }
     }
+
+
 
 }
 
