@@ -42,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     Database mDatabase;
     ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
-
+    final String income_text = "income";
 
     @Override
     public void onResume() {  // After a pause OR at startup
         super.onResume();
         refreshSums();
+        refreshBalance();
     }
 
     @Override
@@ -58,18 +59,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         refreshSums();
+        refreshBalance();
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final SharedPreferences.Editor editor = pref.edit();
-        final String income_text = "income";
         final TextView income = findViewById(R.id.income);
         income.setText(pref.getString(income_text, ""));
-
-        final TextView balance = findViewById(R.id.balance);
-        double d = Double.valueOf(pref.getString(income_text,"")) - Double.valueOf(mDatabase.getSum2());
-        balance.setText(String.valueOf(d));
-
-
 
         income.addTextChangedListener(new TextWatcher() {
             @Override
@@ -182,6 +177,15 @@ public class MainActivity extends AppCompatActivity {
             category_sum.setText(data2.getString(0));
             data2.moveToNext();
         }
+    }
+
+    public void  refreshBalance(){
+
+        final TextView balance = findViewById(R.id.balance);
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor = pref.edit();
+        double d = Double.valueOf(pref.getString(income_text,"")) - Double.valueOf(mDatabase.getSum2());
+        balance.setText(String.valueOf(d));
     }
 
 
