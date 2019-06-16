@@ -13,5 +13,7 @@
         <item>Clothes</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_edit_expense">Edit_expense</string>
+    <string name="title_activity_edit_data">edit_data</string>
 
 </resources>
