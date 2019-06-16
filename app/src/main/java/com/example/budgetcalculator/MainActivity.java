@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         //CHART END
 
 
-        String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
+
         ArrayList<Integer> card_pictures = new ArrayList<>();
         card_pictures.add(R.drawable.categ_1);
         card_pictures.add(R.drawable.categ_2);
@@ -92,18 +92,23 @@ public class MainActivity extends AppCompatActivity {
         card_pictures.add(R.drawable.categ_5);
         card_pictures.add(R.drawable.categ_6);
 
+        final String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
 
         int i = 0;
 
         for (Integer category : categories) {
 
+            final int j = i;
             MaterialCardView card = findViewById(category);
             Button btn = card.findViewById(R.id.add_item);
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, AddItem.class));
+
+                    Intent myIntent= new Intent(MainActivity.this, AddItem.class);
+                    myIntent.putExtra("category_title",category_names[j]);
+                    startActivity(myIntent);
                 }
             });
 

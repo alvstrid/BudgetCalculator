@@ -59,6 +59,14 @@ public class AddItem extends AppCompatActivity {
         final TextView expense_date = findViewById(R.id.expense_date);
         final Spinner expense_category = findViewById(R.id.expense_category);
 
+        Intent myIntent = getIntent();
+        String category_title = myIntent.getStringExtra("category_title");
+        String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
+        for(int i=0; i < categories.length; i++)
+            if(category_title.equals(categories[i]))
+                expense_category.setSelection(i);
+
+
         btnAdd = findViewById(R.id.add_expense);
         btnViewData = findViewById(R.id.view_expenses);
         expensesDatabase = new Database(this);
