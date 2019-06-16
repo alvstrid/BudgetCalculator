@@ -62,8 +62,8 @@
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_money"
                 android:drawableRight="@drawable/ic_money"
-                android:inputType="textCapSentences"
                 android:maxLines="1"
+                android:inputType="number"
 
                 />
 

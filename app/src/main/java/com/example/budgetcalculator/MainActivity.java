@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -32,6 +33,8 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import org.w3c.dom.Text;
 
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+
 /**
  * Created by Roman Teodora
  */
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Database mDatabase;
     ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
     final String income_text = "income";
+    private static final String TAG = "MyActivity";
+
 
     @Override
     public void onResume() {  // After a pause OR at startup
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final TextView income = findViewById(R.id.income);
+
         income.setText(pref.getString(income_text, "0"));
 
         income.addTextChangedListener(new TextWatcher() {
@@ -83,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                pref.edit().putString(income_text, s.toString()).commit();
+                if( s.toString().equals(""))
+                s.replace(0,0,"0");
+                
+                Log.i(TAG, "VALOREA ESTE: !!!!!!!! " + s.toString());
+
+                pref.edit().putString(income_text, s.toString()).apply();
+                refreshBalance();
 
 
             }
@@ -200,4 +212,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-
