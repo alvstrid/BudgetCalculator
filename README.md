@@ -3,9 +3,10 @@ An app for calculating your budget. Doesn't have many features so far. Currently
 The database is working and you cand add items.
 
 Things to do:
-- Improve the listview :heavy_multiplication_x:
+- Improve the listview
 - Make the barchart work according to the given data
 - Add butons to view all items from a category when clicking the category card
+- ...
 
 ## Progress so far
 
