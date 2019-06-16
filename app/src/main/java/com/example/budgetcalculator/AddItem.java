@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -136,7 +137,6 @@ public class AddItem extends AppCompatActivity {
 
     public void AddData(String expense, String amount, String category,String date) {
         boolean insertData = expensesDatabase.addData(expense,amount,category,date);
-
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
         } else {
