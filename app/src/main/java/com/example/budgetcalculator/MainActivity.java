@@ -56,15 +56,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         refreshSums();
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final SharedPreferences.Editor editor = pref.edit();
-
         final String income_text = "income";
-
         final TextView income = findViewById(R.id.income);
         income.setText(pref.getString(income_text, ""));
+
+        final TextView balance = findViewById(R.id.balance);
+        double d = Double.valueOf(pref.getString(income_text,"")) - Double.valueOf(mDatabase.getSum2());
+        balance.setText(String.valueOf(d));
+
+
 
         income.addTextChangedListener(new TextWatcher() {
             @Override

@@ -2,14 +2,18 @@ package com.example.budgetcalculator;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import android.R;
+
+import android.widget.TextView;
 
 public class Database extends SQLiteOpenHelper {
 
@@ -47,21 +51,6 @@ public class Database extends SQLiteOpenHelper {
             long result = db.insert(TABLE_SUMS, null, values);
         }
     }
-
-   /* public boolean addCategory(String category) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(CATEGORIES_COL2, category);
-        long result = db.insert(TABLE_SUMS, null, values);
-
-        //if date as inserted incorrectly it will return -1
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    } */
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
@@ -112,6 +101,15 @@ public class Database extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         data.moveToFirst();
         return data;
+    }
+
+    public String getSum2(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT SUM(" + CATEGORIES_COL3 + ") from " + TABLE_SUMS + ";", null);
+        c.moveToFirst();
+        return c.getString(0);
+
     }
 
     /**
