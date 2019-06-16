@@ -1,7 +1,9 @@
 package com.example.budgetcalculator;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import com.github.mikephil.charting.components.XAxis;
@@ -9,6 +11,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.card.MaterialCardView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Database mDatabase;
     ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
 
+
     @Override
     public void onResume() {  // After a pause OR at startup
         super.onResume();
@@ -48,8 +55,39 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         refreshSums();
-        //CHART
 
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor = pref.edit();
+
+        final String income_text = "income";
+
+        final TextView income = findViewById(R.id.income);
+        income.setText(pref.getString(income_text, ""));
+
+        income.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                pref.edit().putString(income_text, s.toString()).commit();
+
+
+            }
+        });
+
+
+
+
+        //CHART
         BarChart chart = findViewById(R.id.barchart);
 
         List<BarEntry> entries = new ArrayList<>();
@@ -81,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         chart.setFitBars(true); // make the x-axis fit exactly all bars
         chart.invalidate(); // refresh
         //CHART END
-
 
 
         ArrayList<Integer> card_pictures = new ArrayList<>();
