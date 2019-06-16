@@ -60,6 +60,7 @@ public class AddItem extends AppCompatActivity {
         expense_date.setText(current_date.toString());
 
 
+        //NEEDS FIX!!!!!!!!!!!!!!!!!!!!!!!!
         String[] categories2 = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         for(int i = 0; i < categories2.length; i++)
             expensesDatabase.addCategory(categories2[i]);
@@ -110,10 +111,11 @@ public class AddItem extends AppCompatActivity {
                     AddData(newName,newAmount,newCategory,newDate);
                     expense_name.setText("");
                     expense_amount.setText("");
+                    Toast.makeText(getApplicationContext(), "value is "+  expensesDatabase.calculateSum(newCategory), Toast.LENGTH_LONG).show();
+
                 } else {
                     toastMessage("Complete all fields!");
                 }
-
 
             }
         });
