@@ -71,8 +71,9 @@ public class EditData extends AppCompatActivity {
             public void onClick(View view) {
                 String item = editable_item.getText().toString();
                 String item2 = editable_item2.getText().toString();
+                String item3 = editable_item3.getSelectedItem().toString();
                 if(!item.equals("")){
-                    mDatabaseHelper.updateName(item, item2, selectedID,selectedName);
+                    mDatabaseHelper.updateName(item, item2,item3, selectedID,selectedName);
                 }else{
                     toastMessage("You must enter a name");
                 }

@@ -133,12 +133,13 @@ public class Database extends SQLiteOpenHelper {
      * @param id
      * @param oldName
      */
-    public void updateName(String newName,String newAmount, int id, String oldName){
+    public void updateName(String newName,String newAmount,String newCategory, int id, String oldName){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 +
-                " = '" + newName +"," + EXPENSES_COL3 +
-                " = '" + newAmount + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'" +
-                " AND " + EXPENSES_COL2 + " = '" + oldName + "'";
+        String query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName +"',"
+                + EXPENSES_COL3 + " = '" + newAmount + "',"
+                + EXPENSES_COL5 + " = '" + newCategory
+                + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'"
+                + " AND " + EXPENSES_COL2 + " = '" + oldName + "'";
         Log.d(TAG, "updateName: query: " + query);
         Log.d(TAG, "updateName: Setting name to " + newName);
         db.execSQL(query);
