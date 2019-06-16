@@ -62,9 +62,12 @@ public class MainActivity extends AppCompatActivity {
         refreshBalance();
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences settings =getSharedPreferences(income_text,MODE_PRIVATE);
         final SharedPreferences.Editor editor = pref.edit();
+
+
         final TextView income = findViewById(R.id.income);
-        income.setText(pref.getString(income_text, ""));
+        income.setText(pref.getString(income_text, "0"));
 
         income.addTextChangedListener(new TextWatcher() {
             @Override
@@ -179,12 +182,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void  refreshBalance(){
+
 
         final TextView balance = findViewById(R.id.balance);
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final SharedPreferences.Editor editor = pref.edit();
-        double d = Double.valueOf(pref.getString(income_text,"")) - Double.valueOf(mDatabase.getSum2());
+        double x,y;
+        y = Double.valueOf(mDatabase.getSum2());
+        x = Double.valueOf(pref.getString(income_text,"0"));
+        double d =  x - y;
         String formattedValue = String.format("%.2f", d);
         balance.setText(formattedValue);
     }
