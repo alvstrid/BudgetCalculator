@@ -79,6 +79,15 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    public double calculateSum(String category) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT SUM(AMOUNT) FROM " + TABLE_EXPENSES + " WHERE CATEGORY like '%" + category + "%' " , null);
+        c.moveToFirst();
+        double i = c.getDouble(0);
+        c.close();
+        return i;
+    }
+
     /**
      * Returns all the data from database
      * @return
@@ -90,4 +99,8 @@ public class Database extends SQLiteOpenHelper {
         return data;
     }
 
-}
+
+
+    }
+
+
