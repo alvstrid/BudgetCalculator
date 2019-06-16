@@ -5,7 +5,7 @@ An app for calculating your budget.
 
 ![image](https://drive.google.com/uc?export=view&id=1V6mrPmMKREXvZN5rEpvYdu5eqm5uzLgB)
 
-![image](https://drive.google.com/uc?export=view&id=6oplEZRS3dLuoz139E1E3pFpSQZolK4f)
+![image](https://drive.google.com/uc?export=view&id=16oplEZRS3dLuoz139E1E3pFpSQZolK4f)
 
 ![image](https://drive.google.com/uc?export=view&id=1gImWZChuuaPMPEMKjIf2oNrHuaxXNdEg)
 
