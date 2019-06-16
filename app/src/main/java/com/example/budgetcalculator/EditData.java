@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -35,7 +36,7 @@ public class EditData extends AppCompatActivity {
     private Spinner editable_item3;
     Database mDatabaseHelper;
 
-    private String selectedName, selectedAmount, selectedCategory;
+    private String selectedName, selectedAmount, selectedCategory, selectedDate;
     private int selectedID;
 
     private TextView mDisplayDate;
@@ -106,6 +107,11 @@ public class EditData extends AppCompatActivity {
 
 
         //Calendar
+
+        selectedDate = receivedIntent.getStringExtra("date");
+        final TextView expense_date = findViewById(R.id.editable_item3);
+        expense_date.setText(selectedDate);
+        
 
         mDisplayDate = findViewById(R.id.editable_item3);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
