@@ -85,7 +85,7 @@
                 android:weightSum="1">
 
                 <include
-                    android:id="@+id/category1"
+                    android:id="@+id/Food"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     tools:layout_editor_absoluteX="94dp" />
 
                 <include
-                    android:id="@+id/category2"
+                    android:id="@+id/Transportation"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:weightSum="1">
 
                 <include
-                    android:id="@+id/category3"
+                    android:id="@+id/Household"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                     tools:layout_editor_absoluteX="94dp" />
 
                 <include
-                    android:id="@+id/category4"
+                    android:id="@+id/Health"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                 android:weightSum="1">
 
                 <include
-                    android:id="@+id/category5"
+                    android:id="@+id/Clothes"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                     tools:layout_editor_absoluteX="94dp" />
 
                 <include
-                    android:id="@+id/category6"
+                    android:id="@+id/Other"
                     layout="@layout/category_cards"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

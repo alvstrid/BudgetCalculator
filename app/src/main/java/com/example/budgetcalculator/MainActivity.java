@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         chart.invalidate(); // refresh
         //CHART END
 
-        ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.category1, R.id.category2, R.id.category3, R.id.category4, R.id.category5, R.id.category6));
+        ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
         String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         ArrayList<Integer>card_pictures = new ArrayList<>();
         card_pictures.add(R.drawable.categ_1);

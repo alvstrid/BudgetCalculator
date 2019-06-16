@@ -1,7 +1,9 @@
 package com.example.budgetcalculator;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,15 +20,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.google.android.material.card.MaterialCardView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class AddItem extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    Context context = this;
 
     //Database
     Database expensesDatabase;
@@ -37,6 +41,7 @@ public class AddItem extends AppCompatActivity {
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,9 @@ public class AddItem extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Add item");
+
+        final View inflatedView = getLayoutInflater().inflate(R.layout.activity_main, null);
+
 
         final EditText expense_name = findViewById(R.id.expense_name);
         final EditText expense_amount = findViewById(R.id.expense_amount);
@@ -59,11 +67,6 @@ public class AddItem extends AppCompatActivity {
         String current_date = current_date1.format(cal.getTime());
         expense_date.setText(current_date.toString());
 
-
-        //NEEDS FIX!!!!!!!!!!!!!!!!!!!!!!!!
-        String[] categories2 = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
-        for(int i = 0; i < categories2.length; i++)
-            expensesDatabase.addCategory(categories2[i]);
 
         mDisplayDate = findViewById(R.id.expense_date);
 
@@ -111,7 +114,6 @@ public class AddItem extends AppCompatActivity {
                     AddData(newName,newAmount,newCategory,newDate);
                     expense_name.setText("");
                     expense_amount.setText("");
-                    Toast.makeText(getApplicationContext(), "value is "+  expensesDatabase.calculateSum(newCategory), Toast.LENGTH_LONG).show();
 
                 } else {
                     toastMessage("Complete all fields!");
