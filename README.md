@@ -1,12 +1,13 @@
 ## BudgetCalculator
 An app for calculating your budget. Doesn't have many features so far. Currently working on it.
-The database is working and you cand add items.
+The database is working and you cand add items. Also you can add your income and the application calculates your remaining sum after substracting all expenses.
 
 Things to do:
-- Improve the listview
+- Improve the ListView that shows all expenses
 - Make the barchart work according to the given data
 - Add butons to view all items from a category when clicking the category card
-- ...
+- Add a button to see all expenses from main activity
+- ....
 
 ## Progress so far
 
