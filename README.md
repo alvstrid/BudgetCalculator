@@ -5,7 +5,7 @@ The database is working and you can add items. Also you can add your income and 
 Things to do:
 - Improve the ListView that shows all expenses
 - Make the barchart work according to the given data
-- Add butons to view all items from a category when clicking the category card
+- Add buttons to view all items from a category when clicking the category card
 - Add a button to see all expenses from main activity
 - ....
 
