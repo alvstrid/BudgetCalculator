@@ -1,5 +1,5 @@
 ## BudgetCalculator
-An app for calculating your budget. Doesn't have many features so far. Currently working on it.
+An app for calculating your budget. Currently working on it.
 The database is working and you cand add items. Also you can add your income and the application calculates your remaining sum after substracting all expenses.
 
 Things to do:
