@@ -86,7 +86,7 @@ public class EditData extends AppCompatActivity {
                 String item2 = editable_item2.getText().toString();
                 String item3 = editable_item3.getSelectedItem().toString();
                 if(!item.equals("")){
-                    mDatabaseHelper.updateName(item, item2,item3, selectedID,selectedName);
+                    mDatabaseHelper.updateName(item, item2,item3, selectedID,selectedName,selectedAmount,selectedCategory);
                 }else{
                     toastMessage("You must enter a name");
                 }
@@ -98,7 +98,7 @@ public class EditData extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedName);
+                mDatabaseHelper.deleteName(selectedID,selectedName,selectedAmount,selectedCategory);
                 editable_item.setText("");
                 toastMessage("Expense removed");
                 finish();
@@ -111,7 +111,7 @@ public class EditData extends AppCompatActivity {
         selectedDate = receivedIntent.getStringExtra("date");
         final TextView expense_date = findViewById(R.id.editable_item3);
         expense_date.setText(selectedDate);
-        
+
 
         mDisplayDate = findViewById(R.id.editable_item3);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
