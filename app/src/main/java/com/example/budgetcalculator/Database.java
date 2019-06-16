@@ -79,6 +79,12 @@ public class Database extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_EXPENSES, null, contentValues);
 
+        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "+" + amount + " WHERE CATEGORIES = '" + category + "'";
+
+        Log.d(TAG, "Summing the column query: " + query);
+
+        db.execSQL(query);
+
         //if date as inserted incorrectly it will return -1
         if (result == -1) {
             return false;
@@ -88,7 +94,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public double calculateSum(String category) {
+   /* public double calculateSum(String category) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT SUM(AMOUNT) FROM " + TABLE_EXPENSES + " WHERE CATEGORY like '%" + category + "%' " , null);
         c.moveToFirst();
@@ -101,7 +107,7 @@ public class Database extends SQLiteOpenHelper {
 
         cursor.close();
         return i;
-    }
+    }*/
 
     /**
      * Returns only the ID that matches the name passed in
@@ -133,16 +139,20 @@ public class Database extends SQLiteOpenHelper {
      * @param id
      * @param oldName
      */
-    public void updateName(String newName,String newAmount,String newCategory, int id, String oldName){
+    public void updateName(String newName,String newAmount,String newCategory, int id, String oldName, String oldAmount, String oldCategory){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName +"',"
+
+        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + "+" + newAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
+        Log.d(TAG, "Updating the column query: " + query);
+        db.execSQL(query);
+
+        query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName +"',"
                 + EXPENSES_COL3 + " = '" + newAmount + "',"
                 + EXPENSES_COL5 + " = '" + newCategory
                 + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'"
                 + " AND " + EXPENSES_COL2 + " = '" + oldName + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newName);
         db.execSQL(query);
+
     }
 
     /**
@@ -150,9 +160,15 @@ public class Database extends SQLiteOpenHelper {
      * @param id
      * @param name
      */
-    public void deleteName(int id, String name){
+    public void deleteName(int id, String name, String amount, String category){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_EXPENSES + " WHERE "
+
+        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + amount + " WHERE CATEGORIES = '" + category + "'";
+
+        Log.d(TAG, "Substracting the column query: " + query);
+        db.execSQL(query);
+
+        query = "DELETE FROM " + TABLE_EXPENSES + " WHERE "
                 + EXPENSES_COL1 + " = '" + id + "'" +
                 " AND " + EXPENSES_COL2 + " = '" + name + "'";
         Log.d(TAG, "deleteName: query: " + query);
@@ -160,7 +176,6 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(query);
 
     }
-
 
 }
 
