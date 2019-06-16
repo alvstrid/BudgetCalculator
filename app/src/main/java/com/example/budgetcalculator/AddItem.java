@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -57,6 +58,14 @@ public class AddItem extends AppCompatActivity {
         final EditText expense_amount = findViewById(R.id.expense_amount);
         final TextView expense_date = findViewById(R.id.expense_date);
         final Spinner expense_category = findViewById(R.id.expense_category);
+
+        Intent myIntent = getIntent();
+        String category_title = myIntent.getStringExtra("category_title");
+        String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
+        for(int i=0; i < categories.length; i++)
+            if(category_title.equals(categories[i]))
+                expense_category.setSelection(i);
+
 
         btnAdd = findViewById(R.id.add_expense);
         btnViewData = findViewById(R.id.view_expenses);
@@ -136,7 +145,6 @@ public class AddItem extends AppCompatActivity {
 
     public void AddData(String expense, String amount, String category,String date) {
         boolean insertData = expensesDatabase.addData(expense,amount,category,date);
-
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
         } else {

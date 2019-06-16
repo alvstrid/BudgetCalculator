@@ -93,22 +93,6 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-
-   /* public double calculateSum(String category) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT SUM(AMOUNT) FROM " + TABLE_EXPENSES + " WHERE CATEGORY like '%" + category + "%' " , null);
-        c.moveToFirst();
-        double i = c.getDouble(0);
-        c.close();
-
-        Cursor cursor = null;
-        String sql ="SELECT CATEGORIES FROM "+TABLE_SUMS+" WHERE CATEGORIES="+category;
-        cursor= db.rawQuery(sql,null);
-
-        cursor.close();
-        return i;
-    }*/
-
     /**
      * Returns only the ID that matches the name passed in
      * @param name
@@ -119,6 +103,14 @@ public class Database extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_EXPENSES +
                 " WHERE " + EXPENSES_COL2 + " = '" + name + "'";
         Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getSum(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT SUM FROM " + TABLE_SUMS;
+        Cursor data = db.rawQuery(query, null);
+        data.moveToFirst();
         return data;
     }
 

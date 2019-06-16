@@ -2,6 +2,7 @@ package com.example.budgetcalculator;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -20,11 +22,24 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Roman Teodora
  */
 
+
+
 public class MainActivity extends AppCompatActivity {
+
+    Database mDatabase;
+    ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
+
+    @Override
+    public void onResume() {  // After a pause OR at startup
+        super.onResume();
+        refreshSums();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        refreshSums();
         //CHART
 
         BarChart chart = findViewById(R.id.barchart);
@@ -67,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
         chart.invalidate(); // refresh
         //CHART END
 
-        ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
-        String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
-        ArrayList<Integer>card_pictures = new ArrayList<>();
+
+
+        ArrayList<Integer> card_pictures = new ArrayList<>();
         card_pictures.add(R.drawable.categ_1);
         card_pictures.add(R.drawable.categ_2);
         card_pictures.add(R.drawable.categ_3);
@@ -77,17 +92,26 @@ public class MainActivity extends AppCompatActivity {
         card_pictures.add(R.drawable.categ_5);
         card_pictures.add(R.drawable.categ_6);
 
+        final String[] category_names = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
+
         int i = 0;
-        for(Integer category : categories){
+
+        for (Integer category : categories) {
+
+            final int j = i;
             MaterialCardView card = findViewById(category);
             Button btn = card.findViewById(R.id.add_item);
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, AddItem.class));
+
+                    Intent myIntent= new Intent(MainActivity.this, AddItem.class);
+                    myIntent.putExtra("category_title",category_names[j]);
+                    startActivity(myIntent);
                 }
             });
+
 
             //Set card title
 
@@ -96,13 +120,24 @@ public class MainActivity extends AppCompatActivity {
 
             //Set card image
 
-            ImageView img= card.findViewById(R.id.card_picture);
+            ImageView img = card.findViewById(R.id.card_picture);
             img.setImageResource(card_pictures.get(i));
 
             i++;
 
-        }
 
+        }
+    }
+
+    private void refreshSums() {
+        mDatabase = new Database(this);
+        Cursor data2 = mDatabase.getSum();
+        for (Integer category : categories){
+            MaterialCardView card = findViewById(category);
+            TextView category_sum = card.findViewById(R.id.category_sum);
+            category_sum.setText(data2.getString(0));
+            data2.moveToNext();
+        }
     }
 
 }
