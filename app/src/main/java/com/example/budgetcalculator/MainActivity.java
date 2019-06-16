@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         income.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -91,10 +90,22 @@ public class MainActivity extends AppCompatActivity {
 
                 if( s.toString().equals(""))
                 s.replace(0,0,"0");
-                
-                Log.i(TAG, "VALOREA ESTE: !!!!!!!! " + s.toString());
 
-                pref.edit().putString(income_text, s.toString()).apply();
+               String s2 = s.toString();
+
+                if(s2.length()>1 && s2.charAt(0) == '0')
+                {
+                    s.delete(0,1);
+                }
+
+
+                Log.i(TAG, s2);
+
+
+                pref.edit().putString(income_text, s.toString() ).apply();
+
+
+
                 refreshBalance();
 
 
