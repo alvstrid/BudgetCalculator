@@ -40,7 +40,6 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(createTable);
         db.execSQL(createTable2);
 
-        //NEEDS FIX!!!!!!!!!!!!!!!!!!!!!!!!
         String[] categories2 = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         for(int i = 0; i < categories2.length; i++) {
             ContentValues values = new ContentValues();
@@ -109,9 +108,9 @@ public class Database extends SQLiteOpenHelper {
      * @param name
      * @return
      */
-    public Cursor getItemID(String name){
+    public Cursor getItem(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + EXPENSES_COL1 + " FROM " + TABLE_EXPENSES +
+        String query = "SELECT * FROM " + TABLE_EXPENSES +
                 " WHERE " + EXPENSES_COL2 + " = '" + name + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
@@ -134,10 +133,11 @@ public class Database extends SQLiteOpenHelper {
      * @param id
      * @param oldName
      */
-    public void updateName(String newName, int id, String oldName){
+    public void updateName(String newName,String newAmount, int id, String oldName){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 +
-                " = '" + newName + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'" +
+                " = '" + newName +"," + EXPENSES_COL3 +
+                " = '" + newAmount + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'" +
                 " AND " + EXPENSES_COL2 + " = '" + oldName + "'";
         Log.d(TAG, "updateName: query: " + query);
         Log.d(TAG, "updateName: Setting name to " + newName);

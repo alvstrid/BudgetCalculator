@@ -66,16 +66,25 @@ public class ViewExpenses extends AppCompatActivity {
                 String name = adapterView.getItemAtPosition(i).toString();
                 Log.d(TAG, "onItemClick: You Clicked on " + name);
 
-                Cursor data = mDatabase.getItemID(name); //get the id associated with that name
+                Cursor data = mDatabase.getItem(name); //get the id associated with that name
+                //Cursor data = mDatabase.getData(name);
+
                 int itemID = -1;
+                String amount = "", date = "", category = "";
                 while(data.moveToNext()){
                     itemID = data.getInt(0);
+                    amount = data.getString(2);
+                    date = data.getString(3);
+                    category = data.getString(4);
                 }
                 if(itemID > -1){
-                    Log.d(TAG, "onItemClick: The ID is: " + itemID);
+                    Log.d(TAG, "onItemClick: The ID is: " + itemID + " " + amount + " " + date + " " + category);
                     Intent editScreenIntent = new Intent(ViewExpenses.this, EditData.class);
                     editScreenIntent.putExtra("id",itemID);
                     editScreenIntent.putExtra("name",name);
+                    editScreenIntent.putExtra("amount",amount);
+                    editScreenIntent.putExtra("date",date);
+                    editScreenIntent.putExtra("category",category);
                     startActivity(editScreenIntent);
                 }
                 else{

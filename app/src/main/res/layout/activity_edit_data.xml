@@ -41,17 +41,36 @@
         android:layout_height="63dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4" />
+
+    <EditText
+        android:id="@+id/editable_item2"
+        android:layout_width="325dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editable_item" />
+
+    <Spinner
+        android:id="@+id/expense_category"
+        android:layout_width="214dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="44dp"
+        android:entries="@array/categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editable_item2" />
 
     <Button
         android:id="@+id/btnDelete"
@@ -74,13 +93,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="SAVE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editable_item" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
