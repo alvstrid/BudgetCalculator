@@ -48,6 +48,7 @@ public class EditData extends AppCompatActivity {
         setContentView(R.layout.activity_edit_data);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Edit expense");
 
         btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);

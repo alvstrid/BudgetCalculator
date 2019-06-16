@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         XAxis xAxis = chart.getXAxis();
 
 
-        BarDataSet set = new BarDataSet(entries, "Daily expenses");
+        BarDataSet set = new BarDataSet(entries, "Average expense by day");
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setDrawGridLines(false);
