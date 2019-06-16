@@ -62,7 +62,10 @@
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_money"
                 android:drawableRight="@drawable/ic_money"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:inputType="textCapSentences"
+
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
