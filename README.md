@@ -7,6 +7,10 @@ An app for calculating your budget. Currently working on it.
 * [Things to do](#things-to-do)
 * [Technologies](#technologies)
 
+## Installation
+
+You can download 'BudgetCalculator.apk' from the repository files and install it on your device.
+
 ## Current state
 The database is working and you can add/delete/update expenses. You can add your income and the application calculates your remaining money after substracting all expenses and refreshes the barchart with the total sum you spent on each category.
 
