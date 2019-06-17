@@ -18,8 +18,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,6 +75,31 @@ public class MainActivity extends AppCompatActivity {
         refreshSums();
         refreshBalance();
 
+        final EditText income = findViewById(R.id.income);
+
+        findViewById(R.id.scrollView2).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(btnViewData.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                income.clearFocus();
+                return false;
+            }
+        });
+
+       income.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    if (event.getAction() == KeyEvent.ACTION_UP) {
+                        income.clearFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(btnViewData.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
+                }
+                return false;
+            }
+        });
 
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
@@ -88,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final TextView income = findViewById(R.id.income);
+
 
         income.setText(pref.getString(income_text, "0"));
 
