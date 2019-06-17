@@ -6,13 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,13 +16,11 @@ import java.util.ArrayList;
 public class ViewExpenses extends AppCompatActivity {
 
     private static final String TAG = "ViewExpenses";
-
     Database mDatabase;
-    private ListView mListView;
 
     @Override
     public void onResume()
-    {  // After a pause OR at startup
+    {
         super.onResume();
         populateListView();
     }
@@ -40,75 +32,50 @@ public class ViewExpenses extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Edit expense");
-        mListView = findViewById(R.id.listView);
         mDatabase = new Database(this);
         populateListView();
         setTitle("All expenses");
     }
 
     private void populateListView() {
-        Log.d(TAG, "populateListView: Displaying data in the ListView.");
 
-        //get the data and append to a list
-        Cursor data = mDatabase.getData();
+        ArrayList itemsList = getListData();
+        final ListView list = (ListView) findViewById(R.id.listExpenses);
+        list.setAdapter(new CustomListAdapter(this, itemsList));
 
-        ArrayList<String> listData = new ArrayList<>();
-
-        while(data.moveToNext()){
-            //get the value from the database in column 1
-            //then add it to the ArrayList
-            listData.add( ( data.getString(1) + " " + data.getString(2).toString()) + " " + data.getString(4) + " " + data.getString(3) );
-            //listData.add(data.getString(1));
-        }
-        //create the list adapter and set the adapter
-        final ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        mListView.setAdapter(adapter);
-
-        //set an onItemClickListener to the ListView
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String list_item = adapterView.getItemAtPosition(i).toString();
-                String[] name = list_item.split(" ");
+                ExpensesItem expense = (ExpensesItem) list.getItemAtPosition(i);
+                Log.d(TAG, "Selected item: " + expense.getName() +" " + expense.getAmount() + " " + expense.getCategory());
 
-
-                Log.d(TAG, "onItemClick: You Clicked on " + name[0]);
-
-                Cursor data = mDatabase.getItem(name[0]); //get the id associated with that name
-                //Cursor data = mDatabase.getData(name);
-
-                int itemID = -1;
-                String amount = "", date = "", category = "";
-                while(data.moveToNext()){
-                    itemID = data.getInt(0);
-                    amount = data.getString(2);
-                    date = data.getString(3);
-                    category = data.getString(4);
-                }
-                if(itemID > -1){
-                    Log.d(TAG, "onItemClick: The ID is: " + itemID + " " + amount + " " + date + " " + category);
                     Intent editScreenIntent = new Intent(ViewExpenses.this, EditData.class);
-                    editScreenIntent.putExtra("id",itemID);
-                    editScreenIntent.putExtra("name",name[0]);
-                    editScreenIntent.putExtra("amount",amount);
-                    editScreenIntent.putExtra("date",date);
-                    editScreenIntent.putExtra("category",category);
+                    editScreenIntent.putExtra("id",expense.getId());
+                    editScreenIntent.putExtra("name",expense.getName());
+                    editScreenIntent.putExtra("amount",expense.getAmount());
+                    editScreenIntent.putExtra("date",expense.getDate());
+                    editScreenIntent.putExtra("category",expense.getCategory());
                     startActivity(editScreenIntent);
-                }
-                else{
-                    toastMessage("No ID associated with that name");
-                }
-
             }
         });
     }
 
-    /**
-     * customizable toast
-     * @param message
-     */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    private ArrayList getListData() {
+
+        ArrayList<ExpensesItem> listData = new ArrayList<>();
+        Cursor data = mDatabase.getData();
+        while(data.moveToNext()){
+
+            ExpensesItem item = new ExpensesItem();
+            item.setId(data.getInt(0));
+            item.setName(data.getString(1));
+            item.setCategory(data.getString(4));
+            item.setAmount(data.getString(2));
+            item.setDate(data.getString(3));
+            listData.add(item);
+        }
+
+        return listData;
     }
 }
