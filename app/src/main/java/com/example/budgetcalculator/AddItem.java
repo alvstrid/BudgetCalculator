@@ -38,7 +38,7 @@ public class AddItem extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Add item");
+        setTitle("Add");
 
         final View inflatedView = getLayoutInflater().inflate(R.layout.activity_main, null);
 

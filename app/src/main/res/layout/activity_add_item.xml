@@ -61,7 +61,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Add item"
+        android:text="Add"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"

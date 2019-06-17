@@ -5,8 +5,13 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.card.MaterialCardView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -195,9 +200,18 @@ public class MainActivity extends AppCompatActivity {
         entries.add(new BarEntry(5f, sums.get(5)));
 
         XAxis xAxis = chart.getXAxis();
-        String[] days = {"1", "2", "3", "4", "5", "6"};
+        String[] days = {"", "", "", "", "", ""};
+
+
+
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setDrawGridLines(false);
+        xAxis.enableAxisLineDashedLine(2,2,2);
+
+        YAxis rightAxis = chart.getAxisRight();
+        YAxis leftAxis = chart.getAxisLeft();
+        rightAxis.setDrawLabels(false);
+        leftAxis.setDrawLabels(false);
 
         chart.setScaleEnabled(false);
         chart.animateY(2000);
@@ -207,6 +221,18 @@ public class MainActivity extends AppCompatActivity {
         int[] colors = new int[] {Color.rgb(93, 144, 186), Color.rgb(32, 99, 155), Color.rgb(60, 174, 163), Color.rgb(246, 213, 92), Color.rgb(237, 85, 59), Color.rgb(171, 113, 198),Color.rgb(96, 175, 169)};
         set.setColors(colors);
 
+        Legend l = chart.getLegend();
+        LegendEntry l1=new LegendEntry("Food", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(93, 144, 186));
+        LegendEntry l2=new LegendEntry("Transportation", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(32, 99, 155));
+        LegendEntry l3=new LegendEntry("Household", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(60, 174, 163));
+        LegendEntry l4=new LegendEntry("Health", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(246, 213, 92));
+        LegendEntry l5=new LegendEntry("Clothes", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(237, 85, 59));
+        LegendEntry l6=new LegendEntry("Other", Legend.LegendForm.DEFAULT,10f,2f,null, Color.rgb(171, 113, 198));
+        l.setCustom(new LegendEntry[]{l1,l2,l3,l4,l5,l6});
+
+
+
+        chart.getLegend().setWordWrapEnabled(true);
         BarData data = new BarData(set);
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
