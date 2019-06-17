@@ -8,7 +8,7 @@ An app for calculating your budget. Currently working on it.
 * [Technologies](#technologies)
 
 ## Current state
-The database is working and you can add items. All fields for adding/updating expenses are working. Also you can add your income and the application calculates your remaining money after substracting all expenses.
+The database is working and you can add/delete/update expenses. You can add your income and the application calculates your remaining money after substracting all expenses and refreshes the barchart with the total sum you spent on each category.
 
 ------
 
