@@ -3,7 +3,7 @@ An app for calculating your budget. Currently working on it.
 
 ## Table of contents
 
-* [Current State](#current-state)
+* [Current state](#current-state)
 * [Things to do](#things-to-do)
 * [Technologies](#technologies)
 
