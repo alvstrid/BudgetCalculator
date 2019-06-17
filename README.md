@@ -27,7 +27,7 @@ The database is working and you can add items. All fields for adding/updating ex
 Project is created with:
 * Java
 * SQLite
-* (https://www.google.com "MPAndroidChart")
+* [MPAndroidChart](https://www.google.com "Google's Homepage")(https://www.google.com)
 
 
 
