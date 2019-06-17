@@ -12,31 +12,36 @@ import java.util.ArrayList;
 public class CustomListAdapter extends BaseAdapter {
     private ArrayList<ExpensesItem> listData;
     private LayoutInflater layoutInflater;
+
     public CustomListAdapter(Context aContext, ArrayList<ExpensesItem> listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
     }
+
     @Override
     public int getCount() {
         return listData.size();
     }
+
     @Override
     public Object getItem(int position) {
         return listData.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return position;
     }
+
     public View getView(int position, View v, ViewGroup vg) {
         ViewHolder holder;
         if (v == null) {
             v = layoutInflater.inflate(R.layout.view_expenses_row, null);
             holder = new ViewHolder();
-            holder.uName = (TextView) v.findViewById(R.id.expense_name);
+            holder.uName = v.findViewById(R.id.expense_name);
             holder.uDate = v.findViewById(R.id.expense_date);
-            holder.uCategory = (TextView) v.findViewById(R.id.expense_category);
-            holder.uAmount = (TextView) v.findViewById(R.id.expense_amount);
+            holder.uCategory = v.findViewById(R.id.expense_category);
+            holder.uAmount = v.findViewById(R.id.expense_amount);
             v.setTag(holder);
         } else {
             holder = (ViewHolder) v.getTag();
@@ -47,6 +52,7 @@ public class CustomListAdapter extends BaseAdapter {
         holder.uAmount.setText(listData.get(position).getAmount());
         return v;
     }
+
     static class ViewHolder {
         TextView uName;
         TextView uCategory;

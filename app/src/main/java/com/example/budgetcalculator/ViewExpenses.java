@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,8 +20,7 @@ public class ViewExpenses extends AppCompatActivity {
     Database mDatabase;
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         populateListView();
     }
@@ -37,10 +37,13 @@ public class ViewExpenses extends AppCompatActivity {
         setTitle("All expenses");
     }
 
+    /**
+     * Populating the ListView
+     */
     private void populateListView() {
 
         ArrayList itemsList = getListData();
-        final ListView list = (ListView) findViewById(R.id.listExpenses);
+        final ListView list = findViewById(R.id.listExpenses);
         list.setAdapter(new CustomListAdapter(this, itemsList));
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,15 +51,15 @@ public class ViewExpenses extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 ExpensesItem expense = (ExpensesItem) list.getItemAtPosition(i);
-                Log.d(TAG, "Selected item: " + expense.getName() +" " + expense.getAmount() + " " + expense.getCategory());
+                Log.d(TAG, "Selected item: " + expense.getName() + " " + expense.getAmount() + " " + expense.getCategory());
 
-                    Intent editScreenIntent = new Intent(ViewExpenses.this, EditData.class);
-                    editScreenIntent.putExtra("id",expense.getId());
-                    editScreenIntent.putExtra("name",expense.getName());
-                    editScreenIntent.putExtra("amount",expense.getAmount());
-                    editScreenIntent.putExtra("date",expense.getDate());
-                    editScreenIntent.putExtra("category",expense.getCategory());
-                    startActivity(editScreenIntent);
+                Intent editScreenIntent = new Intent(ViewExpenses.this, EditData.class);
+                editScreenIntent.putExtra("id", expense.getId());
+                editScreenIntent.putExtra("name", expense.getName());
+                editScreenIntent.putExtra("amount", expense.getAmount());
+                editScreenIntent.putExtra("date", expense.getDate());
+                editScreenIntent.putExtra("category", expense.getCategory());
+                startActivity(editScreenIntent);
             }
         });
     }
@@ -65,7 +68,7 @@ public class ViewExpenses extends AppCompatActivity {
 
         ArrayList<ExpensesItem> listData = new ArrayList<>();
         Cursor data = mDatabase.getData();
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
 
             ExpensesItem item = new ExpensesItem();
             item.setId(data.getInt(0));

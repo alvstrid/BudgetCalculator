@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,13 +17,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class EditData extends AppCompatActivity {
 
     private static final String TAG = "EditData";
 
-    private Button btnSave,btnDelete;
+    private Button btnSave, btnDelete;
     private EditText editable_item, editable_item2;
     private Spinner editable_item3;
     Database mDatabaseHelper;
@@ -47,7 +50,7 @@ public class EditData extends AppCompatActivity {
 
 
         Intent receivedIntent = getIntent();
-        selectedID = receivedIntent.getIntExtra("id",-1); //NOTE: -1 is just the default value
+        selectedID = receivedIntent.getIntExtra("id", -1);
         selectedName = receivedIntent.getStringExtra("name");
 
         editable_item.setText(selectedName);
@@ -57,14 +60,14 @@ public class EditData extends AppCompatActivity {
 
         editable_item2.setText(selectedAmount);
 
-        selectedCategory =  receivedIntent.getStringExtra("category");
+        selectedCategory = receivedIntent.getStringExtra("category");
 
         editable_item3 = findViewById(R.id.expense_category);
 
         String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
-        for(int i=0; i < categories.length; i++)
-          if(selectedCategory.equals(categories[i]))
-              editable_item3.setSelection(i);
+        for (int i = 0; i < categories.length; i++)
+            if (selectedCategory.equals(categories[i]))
+                editable_item3.setSelection(i);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +75,9 @@ public class EditData extends AppCompatActivity {
                 String item = editable_item.getText().toString();
                 String item2 = editable_item2.getText().toString();
                 String item3 = editable_item3.getSelectedItem().toString();
-                if(!item.equals("")){
-                    mDatabaseHelper.updateName(item, item2,item3, selectedID,selectedName,selectedAmount,selectedCategory);
-                }else{
+                if (!item.equals("")) {
+                    mDatabaseHelper.updateName(item, item2, item3, selectedID, selectedName, selectedAmount, selectedCategory);
+                } else {
                     toastMessage("You must enter a name");
                 }
                 finish();
@@ -85,7 +88,7 @@ public class EditData extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedName,selectedAmount,selectedCategory);
+                mDatabaseHelper.deleteName(selectedID, selectedName, selectedAmount, selectedCategory);
                 editable_item.setText("");
                 toastMessage("Expense removed");
                 finish();
@@ -111,7 +114,7 @@ public class EditData extends AppCompatActivity {
                         EditData.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -133,10 +136,11 @@ public class EditData extends AppCompatActivity {
 
     /**
      * customizable toast
+     *
      * @param message
      */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

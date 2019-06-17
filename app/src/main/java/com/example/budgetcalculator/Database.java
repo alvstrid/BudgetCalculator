@@ -24,11 +24,18 @@ public class Database extends SQLiteOpenHelper {
 
     SQLiteDatabase db = this.getWritableDatabase();
 
+    /**
+     * @param context
+     */
+
     public Database(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase db =  this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
+    /**
+     * @param db
+     */
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -38,12 +45,18 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(createTable2);
 
         String[] categories2 = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
-        for(int i = 0; i < categories2.length; i++) {
+        for (int i = 0; i < categories2.length; i++) {
             ContentValues values = new ContentValues();
             values.put(CATEGORIES_COL2, categories2[i]);
             long result = db.insert(TABLE_SUMS, null, values);
         }
     }
+
+    /**
+     * @param db
+     * @param i
+     * @param i1
+     */
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
@@ -51,7 +64,14 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String expense,  String amount, String category, String date) {
+    /**
+     * @param expense
+     * @param amount
+     * @param category
+     * @param date
+     * @return
+     */
+    public boolean addData(String expense, String amount, String category, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXPENSES_COL2, expense);
@@ -61,13 +81,12 @@ public class Database extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_EXPENSES, null, contentValues);
 
-        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "+" + amount + " WHERE CATEGORIES = '" + category + "'";
+        String query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "+" + amount + " WHERE CATEGORIES = '" + category + "'";
 
         Log.d(TAG, "Summing the column query: " + query);
 
         db.execSQL(query);
 
-        //if date as inserted incorrectly it will return -1
         if (result == -1) {
             return false;
         } else {
@@ -77,10 +96,11 @@ public class Database extends SQLiteOpenHelper {
 
     /**
      * Returns only the ID that matches the name passed in
+     *
      * @param name
      * @return
      */
-    public Cursor getItem(String name){
+    public Cursor getItem(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_EXPENSES +
                 " WHERE " + EXPENSES_COL2 + " = '" + name + "'";
@@ -88,7 +108,10 @@ public class Database extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getSum(){
+    /**
+     * @return
+     */
+    public Cursor getSum() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT SUM FROM " + TABLE_SUMS;
         Cursor data = db.rawQuery(query, null);
@@ -96,7 +119,10 @@ public class Database extends SQLiteOpenHelper {
         return data;
     }
 
-    public String getSum2(){
+    /**
+     * @return
+     */
+    public String getSum2() {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT SUM(" + CATEGORIES_COL3 + ") from " + TABLE_SUMS + ";", null);
@@ -107,9 +133,10 @@ public class Database extends SQLiteOpenHelper {
 
     /**
      * Returns all the data from database
+     *
      * @return
      */
-    public Cursor getData(){
+    public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_EXPENSES;
         Cursor data = db.rawQuery(query, null);
@@ -118,18 +145,19 @@ public class Database extends SQLiteOpenHelper {
 
     /**
      * Updates the name field
+     *
      * @param newName
      * @param id
      * @param oldName
      */
-    public void updateName(String newName,String newAmount,String newCategory, int id, String oldName, String oldAmount, String oldCategory){
+    public void updateName(String newName, String newAmount, String newCategory, int id, String oldName, String oldAmount, String oldCategory) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + "+" + newAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
+        String query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + "+" + newAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
         Log.d(TAG, "Updating the column query: " + query);
         db.execSQL(query);
 
-        query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName +"',"
+        query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName + "',"
                 + EXPENSES_COL3 + " = '" + newAmount + "',"
                 + EXPENSES_COL5 + " = '" + newCategory
                 + "' WHERE " + EXPENSES_COL1 + " = '" + id + "'"
@@ -140,13 +168,14 @@ public class Database extends SQLiteOpenHelper {
 
     /**
      * Delete from database
+     *
      * @param id
      * @param name
      */
-    public void deleteName(int id, String name, String amount, String category){
+    public void deleteName(int id, String name, String amount, String category) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query  = " UPDATE " + TABLE_SUMS + " SET " +  CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + amount + " WHERE CATEGORIES = '" + category + "'";
+        String query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + amount + " WHERE CATEGORIES = '" + category + "'";
 
         Log.d(TAG, "Substracting the column query: " + query);
         db.execSQL(query);

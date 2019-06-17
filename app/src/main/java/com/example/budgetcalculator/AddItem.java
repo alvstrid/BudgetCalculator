@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -51,8 +54,8 @@ public class AddItem extends AppCompatActivity {
         Intent myIntent = getIntent();
         String category_title = myIntent.getStringExtra("category_title");
         String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
-        for(int i=0; i < categories.length; i++)
-            if(category_title.equals(categories[i]))
+        for (int i = 0; i < categories.length; i++)
+            if (category_title.equals(categories[i]))
                 expense_category.setSelection(i);
 
 
@@ -80,7 +83,7 @@ public class AddItem extends AppCompatActivity {
                         AddItem.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -107,8 +110,8 @@ public class AddItem extends AppCompatActivity {
                 String newCategory = expense_category.getSelectedItem().toString();
                 String newDate = expense_date.getText().toString();
 
-                if (expense_name.length() != 0 && expense_amount.length()!= 0) {
-                    AddData(newName,newAmount,newCategory,newDate);
+                if (expense_name.length() != 0 && expense_amount.length() != 0) {
+                    AddData(newName, newAmount, newCategory, newDate);
                     expense_name.setText("");
                     expense_amount.setText("");
 
@@ -130,9 +133,8 @@ public class AddItem extends AppCompatActivity {
 
     }
 
-
-    public void AddData(String expense, String amount, String category,String date) {
-        boolean insertData = expensesDatabase.addData(expense,amount,category,date);
+    public void AddData(String expense, String amount, String category, String date) {
+        boolean insertData = expensesDatabase.addData(expense, amount, category, date);
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
         } else {
@@ -141,14 +143,15 @@ public class AddItem extends AppCompatActivity {
     }
 
     /**
-     * customizable toast
+     * Customizable toast
+     *
      * @param message
      */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    }
+}
 
 
 
