@@ -57,8 +57,8 @@ public class ViewExpenses extends AppCompatActivity {
         while(data.moveToNext()){
             //get the value from the database in column 1
             //then add it to the ArrayList
-            //listData.add( (data.getString(1) + " " + data.getString(2).toString()) + " " + data.getString(4) + " " + data.getString(3) );
-            listData.add(data.getString(1));
+            listData.add( ( data.getString(1) + " " + data.getString(2).toString()) + " " + data.getString(4) + " " + data.getString(3) );
+            //listData.add(data.getString(1));
         }
         //create the list adapter and set the adapter
         final ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
@@ -68,10 +68,14 @@ public class ViewExpenses extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String name = adapterView.getItemAtPosition(i).toString();
-                Log.d(TAG, "onItemClick: You Clicked on " + name);
 
-                Cursor data = mDatabase.getItem(name); //get the id associated with that name
+                String list_item = adapterView.getItemAtPosition(i).toString();
+                String[] name = list_item.split(" ");
+
+
+                Log.d(TAG, "onItemClick: You Clicked on " + name[0]);
+
+                Cursor data = mDatabase.getItem(name[0]); //get the id associated with that name
                 //Cursor data = mDatabase.getData(name);
 
                 int itemID = -1;
@@ -86,7 +90,7 @@ public class ViewExpenses extends AppCompatActivity {
                     Log.d(TAG, "onItemClick: The ID is: " + itemID + " " + amount + " " + date + " " + category);
                     Intent editScreenIntent = new Intent(ViewExpenses.this, EditData.class);
                     editScreenIntent.putExtra("id",itemID);
-                    editScreenIntent.putExtra("name",name);
+                    editScreenIntent.putExtra("name",name[0]);
                     editScreenIntent.putExtra("amount",amount);
                     editScreenIntent.putExtra("date",date);
                     editScreenIntent.putExtra("category",category);
