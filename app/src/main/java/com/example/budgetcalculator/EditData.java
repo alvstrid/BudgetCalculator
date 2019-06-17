@@ -5,26 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 public class EditData extends AppCompatActivity {
@@ -55,26 +45,22 @@ public class EditData extends AppCompatActivity {
         editable_item = (EditText) findViewById(R.id.editable_item);
         mDatabaseHelper = new Database(this);
 
-        //get the intent extra from the ListDataActivity
+
         Intent receivedIntent = getIntent();
-
-        //now get the itemID we passed as an extra
         selectedID = receivedIntent.getIntExtra("id",-1); //NOTE: -1 is just the default value
-
-        //now get the name we passed as an extra
         selectedName = receivedIntent.getStringExtra("name");
 
-        //set the text to show the current selected name
         editable_item.setText(selectedName);
-
-        //show current amount
         selectedAmount = receivedIntent.getStringExtra("amount");
+
         editable_item2 = (EditText) findViewById(R.id.editable_item2);
+
         editable_item2.setText(selectedAmount);
 
-        //show current category
         selectedCategory =  receivedIntent.getStringExtra("category");
+
         editable_item3 = findViewById(R.id.expense_category);
+
         String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         for(int i=0; i < categories.length; i++)
           if(selectedCategory.equals(categories[i]))
@@ -106,8 +92,6 @@ public class EditData extends AppCompatActivity {
             }
         });
 
-
-        //Calendar
 
         selectedDate = receivedIntent.getStringExtra("date");
         final TextView expense_date = findViewById(R.id.editable_item3);

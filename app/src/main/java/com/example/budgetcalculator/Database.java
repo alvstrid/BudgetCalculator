@@ -2,18 +2,11 @@ package com.example.budgetcalculator;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import android.widget.TextView;
 
 public class Database extends SQLiteOpenHelper {
 

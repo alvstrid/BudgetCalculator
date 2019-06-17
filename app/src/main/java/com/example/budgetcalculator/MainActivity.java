@@ -1,7 +1,5 @@
 package com.example.budgetcalculator;
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -11,16 +9,11 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.card.MaterialCardView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -30,10 +23,6 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-
-import org.w3c.dom.Text;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by Roman Teodora
@@ -50,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public void onResume() {  // After a pause OR at startup
+    public void onResume() {
         super.onResume();
         refreshSums();
         refreshBalance();
@@ -112,10 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        //CHART
         BarChart chart = findViewById(R.id.barchart);
 
         List<BarEntry> entries = new ArrayList<>();
@@ -146,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
         chart.invalidate(); // refresh
-        //CHART END
 
 
         ArrayList<Integer> card_pictures = new ArrayList<>();

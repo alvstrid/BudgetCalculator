@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listExpenses"
         android:layout_width="367dp"
         android:layout_height="590dp"
         android:layout_marginStart="24dp"

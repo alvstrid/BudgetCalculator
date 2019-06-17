@@ -3,29 +3,20 @@ package com.example.budgetcalculator;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.card.MaterialCardView;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 public class AddItem extends AppCompatActivity {
@@ -33,11 +24,9 @@ public class AddItem extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Context context = this;
 
-    //Database
     Database expensesDatabase;
 
     private Button btnAdd, btnViewData;
-    private EditText editText;
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -79,7 +68,6 @@ public class AddItem extends AppCompatActivity {
 
         mDisplayDate = findViewById(R.id.expense_date);
 
-        //Calendar
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +97,7 @@ public class AddItem extends AppCompatActivity {
             }
         };
 
-        //DATABASE
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
