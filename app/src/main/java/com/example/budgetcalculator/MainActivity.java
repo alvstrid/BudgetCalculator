@@ -3,6 +3,7 @@ package com.example.budgetcalculator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
@@ -123,17 +124,22 @@ public class MainActivity extends AppCompatActivity {
         entries.add(new BarEntry(5f, 70f));
         entries.add(new BarEntry(6f, 70f));
 
-        int color = getResources().getColor(R.color.colorCharts);
+
         XAxis xAxis = chart.getXAxis();
 
 
-        BarDataSet set = new BarDataSet(entries, "Average expense by day");
-        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        BarDataSet set = new BarDataSet(entries, "Last 7 days");
+
+        String[] days = {"1", "2", "3", "4", "5", "6","7"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setDrawGridLines(false);
 
+        //int color = getResources().getColor(R.color.colorCharts);
+        //set.setColor(color);
 
-        set.setColor(color);
+        int[] colors = new int[] {Color.rgb(93, 144, 186), Color.rgb(32, 99, 155), Color.rgb(60, 174, 163), Color.rgb(246, 213, 92), Color.rgb(237, 85, 59), Color.rgb(171, 113, 198),Color.rgb(96, 175, 169)};
+        set.setColors(colors);
+
         chart.setScaleEnabled(false);
         chart.animateY(2000);
         chart.getDescription().setEnabled(false);
