@@ -12,4 +12,4 @@ The database is working and you can add items. All fields for adding/updating ex
 
 ## Progress so far
 
-![image](https://drive.google.com/uc?export=view&id=1IGhusCBd1ATfvkx43Z_kDRJlTLoq3XGN)
+![image](https://drive.google.com/uc?export=view&id=1BKuFNUufzS5a6pN9Hm-BOVgwy2pdCSyc)
