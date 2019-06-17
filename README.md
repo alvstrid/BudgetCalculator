@@ -12,7 +12,7 @@ The database is working and you can add/delete/update expenses. You can add your
 
 ------
 
-![image](https://drive.google.com/uc?export=view&id=14yMY0Yo8POrkyi-szkuXeCr2XQRkdZn7)
+![image](https://drive.google.com/uc?export=view&id=13eFVoNKXQMcpqqRamlIHi-tjkomZJLbt)
 
 ### Things to do
 - Add a database to the application :heavy_check_mark:
