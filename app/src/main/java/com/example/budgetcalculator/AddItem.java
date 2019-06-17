@@ -57,7 +57,7 @@ public class AddItem extends AppCompatActivity {
 
 
         btnAdd = findViewById(R.id.add_expense);
-        btnViewData = findViewById(R.id.view_expenses);
+        btnViewData = findViewById(R.id.balance);
         expensesDatabase = new Database(this);
 
         Calendar cal = Calendar.getInstance();

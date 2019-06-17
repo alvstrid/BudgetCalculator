@@ -188,7 +188,7 @@
         android:text="SAVE"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textSize="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/view_expenses"
+        app:layout_constraintEnd_toStartOf="@+id/balance"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expense_category" />
