@@ -7,7 +7,6 @@ The database is working and you can add items. All fields for adding/updating ex
 - Adding / Removing / Updating expenses in the database :heavy_check_mark:
 - Improve the ListView that shows all expenses :heavy_check_mark: 
 - Make the barchart work according to the given data :x:
-- Add buttons to view all items from a category when clicking the category card :x:
 - Add a button to see all expenses from main activity :heavy_check_mark: 
 - ....
 
