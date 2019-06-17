@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> categories = new ArrayList<>(Arrays.asList(R.id.Food, R.id.Transportation, R.id.Household, R.id.Health, R.id.Clothes, R.id.Other));
     final String income_text = "income";
     private static final String TAG = "MyActivity";
+    private Button btnViewData;
 
 
     @Override
@@ -59,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings =getSharedPreferences(income_text,MODE_PRIVATE);
         final SharedPreferences.Editor editor = pref.edit();
 
+
+        btnViewData = findViewById(R.id.view_expenses);
+
+        btnViewData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewExpenses.class);
+                startActivity(intent);
+            }
+        });
 
         final TextView income = findViewById(R.id.income);
 

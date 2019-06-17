@@ -18,12 +18,13 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
-            android:layout_width="0dp"
+            android:layout_width="411dp"
             android:layout_height="wrap_content"
             android:background="#9556A7"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -36,24 +37,29 @@
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barchart"
-            android:layout_width="0dp"
-            android:layout_height="271dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="227dp"
+            android:layout_height="194dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="172dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="156dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:hint="@string/hint_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barchart">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/barchart"
+            app:layout_constraintTop_toBottomOf="@+id/balance">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -62,8 +68,8 @@
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_money"
                 android:drawableRight="@drawable/ic_money"
-                android:maxLines="1"
                 android:inputType="number"
+                android:maxLines="1"
 
                 />
 
@@ -80,7 +86,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/barchart">
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -174,16 +180,10 @@
             android:layout_height="19dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="12dp"
             android:text="Current balance:"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout"
-            app:layout_constraintVertical_bias="0.019" />
+            app:layout_constraintStart_toEndOf="@+id/barchart"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <TextView
             android:id="@+id/balance"
@@ -191,14 +191,33 @@
             android:layout_height="29dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:text="250 $"
-            android:textSize="20dp"
+            android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/barchart"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/view_expenses"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="144dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="View expenses"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/barchart"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
