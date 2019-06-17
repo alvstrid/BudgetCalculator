@@ -8,6 +8,8 @@ The database is working and you can add items. All fields for adding/updating ex
 - Improve the ListView that shows all expenses :heavy_check_mark: 
 - Make the barchart work according to the given data :heavy_check_mark: 
 - Add a button to see all expenses from main activity :heavy_check_mark: 
+- Reset balance every month :x:
+- Show expenses by month and category :x:
 - ....
 
 ## Progress so far
