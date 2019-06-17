@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         BarChart chart = findViewById(R.id.barchart);
 
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 120f));
+        entries.add(new BarEntry(0f, 120));
         entries.add(new BarEntry(1f, 80f));
         entries.add(new BarEntry(2f, 60f));
         entries.add(new BarEntry(3f, 50f));
