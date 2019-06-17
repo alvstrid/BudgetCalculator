@@ -13,7 +13,7 @@ The database is working and you can add items. All fields for adding/updating ex
 ![image](https://drive.google.com/uc?export=view&id=1BKuFNUufzS5a6pN9Hm-BOVgwy2pdCSyc)
 
 
-#### Things to do
+### Things to do
 - Add a database to the application :heavy_check_mark:
 - Adding / Removing / Updating expenses in the database :heavy_check_mark:
 - Improve the ListView that shows all expenses :heavy_check_mark: 
