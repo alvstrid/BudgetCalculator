@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     final String income_text = "income";
     private static final String TAG = "MyActivity";
     private Button btnViewData;
+    ArrayList<Float> sums = new ArrayList<>();
+    BarChart chart;
+    List<BarEntry> entries = new ArrayList<>();
+    BarDataSet set;
 
 
     @Override
@@ -53,9 +59,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        BarChart chart = findViewById(R.id.barchart);
+
+        set = new BarDataSet(entries, "");
 
         refreshSums();
         refreshBalance();
+
+
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences settings =getSharedPreferences(income_text,MODE_PRIVATE);
@@ -90,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
                 if( s.toString().equals(""))
-                s.replace(0,0,"0");
+                    s.replace(0,0,"0");
 
-               String s2 = s.toString();
+                String s2 = s.toString();
 
                 if(s2.length()>1 && s2.charAt(0) == '0')
                 {
@@ -113,41 +124,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        BarChart chart = findViewById(R.id.barchart);
-
-        List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 120));
-        entries.add(new BarEntry(1f, 80f));
-        entries.add(new BarEntry(2f, 60f));
-        entries.add(new BarEntry(3f, 50f));
-        entries.add(new BarEntry(4f, 70f));
-        entries.add(new BarEntry(5f, 70f));
-        entries.add(new BarEntry(6f, 70f));
-
-
-        XAxis xAxis = chart.getXAxis();
-
-
-        BarDataSet set = new BarDataSet(entries, "Last 7 days");
-
-        String[] days = {"1", "2", "3", "4", "5", "6","7"};
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
-        xAxis.setDrawGridLines(false);
-
-        //int color = getResources().getColor(R.color.colorCharts);
-        //set.setColor(color);
-
-        int[] colors = new int[] {Color.rgb(93, 144, 186), Color.rgb(32, 99, 155), Color.rgb(60, 174, 163), Color.rgb(246, 213, 92), Color.rgb(237, 85, 59), Color.rgb(171, 113, 198),Color.rgb(96, 175, 169)};
-        set.setColors(colors);
-
-        chart.setScaleEnabled(false);
-        chart.animateY(2000);
-        chart.getDescription().setEnabled(false);
-        BarData data = new BarData(set);
-        data.setBarWidth(0.9f); // set custom bar width
-        chart.setData(data);
-        chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh
 
 
         ArrayList<Integer> card_pictures = new ArrayList<>();
@@ -196,15 +172,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshSums() {
+
+        BarChart chart = findViewById(R.id.barchart);
+        sums.clear();
+        entries.clear();
+
         mDatabase = new Database(this);
         Cursor data2 = mDatabase.getSum();
         for (Integer category : categories){
             MaterialCardView card = findViewById(category);
             TextView category_sum = card.findViewById(R.id.category_sum);
             category_sum.setText(data2.getString(0));
+            sums.add(Float.parseFloat(data2.getString(0)));
             data2.moveToNext();
         }
+
+        entries.add(new BarEntry(0f, sums.get(0)));
+        entries.add(new BarEntry(1f, sums.get(1)));
+        entries.add(new BarEntry(2f, sums.get(2)));
+        entries.add(new BarEntry(3f, sums.get(3)));
+        entries.add(new BarEntry(4f, sums.get(4)));
+        entries.add(new BarEntry(5f, sums.get(5)));
+
+        XAxis xAxis = chart.getXAxis();
+        String[] days = {"1", "2", "3", "4", "5", "6"};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
+        xAxis.setDrawGridLines(false);
+
+        chart.setScaleEnabled(false);
+        chart.animateY(2000);
+        chart.getDescription().setEnabled(false);
+
+        set = new BarDataSet(entries,"Expenses by category");
+        int[] colors = new int[] {Color.rgb(93, 144, 186), Color.rgb(32, 99, 155), Color.rgb(60, 174, 163), Color.rgb(246, 213, 92), Color.rgb(237, 85, 59), Color.rgb(171, 113, 198),Color.rgb(96, 175, 169)};
+        set.setColors(colors);
+
+        BarData data = new BarData(set);
+        data.setBarWidth(0.9f); // set custom bar width
+        chart.setData(data);
+        chart.setFitBars(true); // make the x-axis fit exactly all bars
+        chart.notifyDataSetChanged();
+        chart.invalidate(); // refresh
+
+
+
     }
+
 
 
     public void  refreshBalance(){
