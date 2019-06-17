@@ -11,8 +11,4 @@ The database is working and you can add items. All fields for adding/updating ex
 
 ## Progress so far
 
-![image](https://drive.google.com/uc?export=view&id=1V6mrPmMKREXvZN5rEpvYdu5eqm5uzLgB)
-
-![image](https://drive.google.com/uc?export=view&id=1gImWZChuuaPMPEMKjIf2oNrHuaxXNdEg)
-
-![image](https://drive.google.com/uc?export=view&id=1nbaut32b8m8aHnnOTSgdteZ04AZIInk-)
+![image](https://drive.google.com/uc?export=view&id=1IGhusCBd1ATfvkx43Z_kDRJlTLoq3XGN)
