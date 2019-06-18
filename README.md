@@ -1,5 +1,5 @@
 # Budget Calculator
-An app for calculating your budget. Currently working on it.
+An app for calculating your budget.
 
 ## Table of contents
 
