@@ -1,5 +1,5 @@
 # Budget Calculator
-An app for calculating your budget.
+This is an application that helps you keep track of your monthly expenses. 
 
 ## Table of contents
 
