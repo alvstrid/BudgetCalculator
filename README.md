@@ -15,8 +15,7 @@ You can download 'BudgetCalculator.apk' from the repository files and install it
 The database is working and you can add/delete/update expenses. You can add your income and the application calculates your remaining money after substracting all expenses and refreshes the barchart with the total sum you spent on each category.
 
 ------
-
-![image](https://drive.google.com/uc?export=view&id=13eFVoNKXQMcpqqRamlIHi-tjkomZJLbt)
+![image](https://drive.google.com/uc?export=view&id=1-kQE4hYP32Xy0Hr6owa_2OuwzdhDOf-f)
 
 ### Things to do
 - Add a database to the application :heavy_check_mark:
