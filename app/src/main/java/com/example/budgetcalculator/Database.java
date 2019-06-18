@@ -153,9 +153,24 @@ public class Database extends SQLiteOpenHelper {
     public void updateName(String newName, String newAmount, String newCategory, int id, String oldName, String oldAmount, String oldCategory) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + "+" + newAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
+        String query;
+
+
+        if( newCategory == oldCategory ) {
+                query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + "+" + newAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
+                db.execSQL(query);
+        }
+        else    {
+
+            query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + CATEGORIES_COL3 + "-" + oldAmount + " WHERE CATEGORIES = '" + oldCategory + "'";
+            db.execSQL(query);
+            query = " UPDATE " + TABLE_SUMS + " SET " + CATEGORIES_COL3 + " = " + newAmount + " WHERE CATEGORIES = '" + newCategory + "'";
+            db.execSQL(query);
+        }
+
+
+
         Log.d(TAG, "Updating the column query: " + query);
-        db.execSQL(query);
 
         query = "UPDATE " + TABLE_EXPENSES + " SET " + EXPENSES_COL2 + " = '" + newName + "',"
                 + EXPENSES_COL3 + " = '" + newAmount + "',"
