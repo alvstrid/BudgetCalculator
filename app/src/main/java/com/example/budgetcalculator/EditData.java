@@ -26,6 +26,7 @@ public class EditData extends AppCompatActivity {
 
     private Button btnSave, btnDelete;
     private EditText editable_item, editable_item2;
+    private TextView editable_item4;
     private Spinner editable_item3;
     Database mDatabaseHelper;
 
@@ -64,6 +65,10 @@ public class EditData extends AppCompatActivity {
 
         editable_item3 = findViewById(R.id.expense_category);
 
+        selectedDate = receivedIntent.getStringExtra("date");
+
+        editable_item4 = findViewById(R.id.editable_item3);
+
         String[] categories = {"Food", "Transportation", "Household", "Health", "Clothes", "Other"};
         for (int i = 0; i < categories.length; i++)
             if (selectedCategory.equals(categories[i]))
@@ -75,8 +80,9 @@ public class EditData extends AppCompatActivity {
                 String item = editable_item.getText().toString();
                 String item2 = editable_item2.getText().toString();
                 String item3 = editable_item3.getSelectedItem().toString();
+                String item4 = editable_item4.getText().toString();
                 if (!item.equals("")) {
-                    mDatabaseHelper.updateName(item, item2, item3, selectedID, selectedName, selectedAmount, selectedCategory);
+                    mDatabaseHelper.updateName(item, item2, item3, item4, selectedID, selectedName, selectedAmount, selectedCategory, selectedDate);
                 } else {
                     toastMessage("You must enter a name");
                 }
